@@ -4,6 +4,8 @@ Dashboard estático con los resultados de la auditoría de seguridad de la infor
 
 Curso Ciberseguridad (750024 C), grupo 3743. Docente: Mgs. Claudia Ximena Muñoz Ausecha.
 
+Sitio: https://auditoria-control-accesos-eisc.vercel.app (copia en https://briangomezm.github.io/auditoria-control-accesos-eisc/)
+
 ## Qué muestra
 
 - Contexto: el hurto de 39 CPU de la sala 5 (mayo de 2026) y el peso de las credenciales en las brechas.
@@ -29,7 +31,7 @@ npm run dev
 
 ## Publicar
 
-`npm run build` genera la carpeta `dist/` con rutas relativas, así que sirve para GitHub Pages, Netlify o Render como sitio estático.
+`npm run build` genera la carpeta `dist/` con rutas relativas. El sitio está en Vercel (proyecto `auditoria-control-accesos-eisc`) y cada push a `main` lo publica también en GitHub Pages con el flujo de `.github/workflows/deploy.yml`. Para volver a desplegar en Vercel desde la carpeta: `npx vercel deploy --prod`.
 
 ## Equipo
 
