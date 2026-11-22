@@ -22,7 +22,7 @@ export const cifras = [
 export type Fase = { n: number; titulo: string; texto: string };
 export const fases: Fase[] = [
   { n: 1, titulo: "Inicio y planificación", texto: "Definimos el alcance (solo las salas de cómputo), los criterios de la norma y las listas de chequeo." },
-  { n: 2, titulo: "Ejecución y evidencia", texto: "Observación de las salas, entrevistas a monitores y la prueba controlada de contraseñas." },
+  { n: 2, titulo: "Ejecución y evidencia", texto: "Revisión documental, experiencia de uso de los integrantes y la prueba controlada de contraseñas. La visita a las salas quedó aplazada por el sismo." },
   { n: 3, titulo: "Informe y entrega", texto: "Hallazgos, matriz de riesgos, plan de tratamiento, este dashboard y la exposición final." },
 ];
 
@@ -59,19 +59,33 @@ export type Control = {
   tipo: "Lógico" | "Físico";
   valor: number;
   observacion: string;
+  evidencia: string[];
+};
+export const fuentes: Record<string, string> = {
+  Exp: "Experiencia de uso de los integrantes",
+  Pub: "Información pública de la Universidad",
+  Pre: "Prensa",
+  Lab: "Prueba con John the Ripper",
 };
 export const controles: Control[] = [
-  { id: "A.5.15", nombre: "Control de acceso", tipo: "Lógico", valor: 20, observacion: "No encontramos una política de control de acceso documentada y divulgada para las salas." },
-  { id: "A.5.16", nombre: "Gestión de identidades", tipo: "Lógico", valor: 40, observacion: "Hay gestión de cuentas, pero siguen existiendo cuentas genéricas o compartidas por sala." },
-  { id: "A.5.17", nombre: "Información de autenticación", tipo: "Lógico", valor: 20, observacion: "Contraseñas débiles o compartidas, sin requisitos mínimos." },
-  { id: "A.5.18", nombre: "Derechos de acceso", tipo: "Lógico", valor: 40, observacion: "Las altas y bajas no siempre se revocan al terminar el semestre." },
-  { id: "A.7.1", nombre: "Perímetros de seguridad física", tipo: "Físico", valor: 40, observacion: "Las salas tienen puerta y cerradura y el campus tiene vigilancia, pero en mayo de 2026 se sustrajeron 39 CPU de la sala 5." },
-  { id: "A.7.2", nombre: "Entrada física", tipo: "Físico", valor: 40, observacion: "El ingreso lo controla un monitor o el carné en horario de clase, sin un registro consistente." },
-  { id: "A.7.4", nombre: "Monitoreo de la seguridad física", tipo: "Físico", valor: 20, observacion: "No hay información pública sobre cámaras o alarmas en las salas, y la pérdida de equipos se reportó a la mañana siguiente. Se confirma en la visita." },
-  { id: "A.8.2", nombre: "Derechos de acceso privilegiado", tipo: "Lógico", valor: 40, observacion: "Varias máquinas tienen cuentas de administrador local sin control estricto." },
-  { id: "A.8.3", nombre: "Restricción de acceso a la información", tipo: "Lógico", valor: 60, observacion: "Existe restricción por perfil, aunque los recursos de red están poco segmentados." },
-  { id: "A.8.5", nombre: "Autenticación segura", tipo: "Lógico", valor: 20, observacion: "No hay autenticación multifactor ni bloqueo por intentos fallidos." },
-  { id: "A.8.15", nombre: "Registro de eventos", tipo: "Lógico", valor: 20, observacion: "No hay evidencia de un registro centralizado de inicios de sesión ni de ingresos a las salas." },
+  { id: "A.5.15", nombre: "Control de acceso", tipo: "Lógico", valor: 20, evidencia: ["Pub"], observacion: "No encontramos una política de control de acceso documentada y divulgada para las salas." },
+  { id: "A.5.16", nombre: "Gestión de identidades", tipo: "Lógico", valor: 40, evidencia: ["Exp"], observacion: "Hay gestión de cuentas, pero siguen existiendo cuentas genéricas o compartidas por sala." },
+  { id: "A.5.17", nombre: "Información de autenticación", tipo: "Lógico", valor: 20, evidencia: ["Exp", "Lab"], observacion: "Contraseñas débiles o compartidas, sin requisitos mínimos." },
+  { id: "A.5.18", nombre: "Derechos de acceso", tipo: "Lógico", valor: 40, evidencia: ["Exp"], observacion: "Las altas y bajas no siempre se revocan al terminar el semestre." },
+  { id: "A.7.1", nombre: "Perímetros de seguridad física", tipo: "Físico", valor: 40, evidencia: ["Exp", "Pre"], observacion: "Las salas tienen puerta y cerradura y el campus tiene vigilancia, pero en mayo de 2026 se sustrajeron 39 CPU de la sala 5." },
+  { id: "A.7.2", nombre: "Entrada física", tipo: "Físico", valor: 40, evidencia: ["Exp"], observacion: "El ingreso lo controla un monitor o el carné en horario de clase, sin un registro consistente." },
+  { id: "A.7.4", nombre: "Monitoreo de la seguridad física", tipo: "Físico", valor: 20, evidencia: ["Pre", "Pub"], observacion: "No hay información pública sobre cámaras o alarmas en las salas, y la pérdida de equipos se reportó a la mañana siguiente. Es la prioridad de la visita cuando reabran las salas." },
+  { id: "A.8.2", nombre: "Derechos de acceso privilegiado", tipo: "Lógico", valor: 40, evidencia: ["Exp"], observacion: "Varias máquinas tienen cuentas de administrador local sin control estricto." },
+  { id: "A.8.3", nombre: "Restricción de acceso a la información", tipo: "Lógico", valor: 60, evidencia: ["Exp"], observacion: "Existe restricción por perfil, aunque los recursos de red están poco segmentados." },
+  { id: "A.8.5", nombre: "Autenticación segura", tipo: "Lógico", valor: 20, evidencia: ["Exp", "Lab"], observacion: "No hay autenticación multifactor ni bloqueo por intentos fallidos." },
+  { id: "A.8.15", nombre: "Registro de eventos", tipo: "Lógico", valor: 20, evidencia: ["Exp", "Pub"], observacion: "No hay evidencia de un registro centralizado de inicios de sesión ni de ingresos a las salas." },
+];
+
+export const creditos = [
+  { img: "sala.jpg", texto: "Sala de cómputo de referencia: \"Computer lab showing desktop PCs warwick\", Mike1024, dominio público", url: "https://commons.wikimedia.org/wiki/File:Computer_lab_showing_desktop_PCs_warwick.jpg" },
+  { img: "lector.jpg", texto: "Lector de tarjetas: \"BioAffix Cardreader Wall\", Sezeruludag, CC BY 4.0", url: "https://commons.wikimedia.org/wiki/File:BioAffix_Cardreader_Wall.png" },
+  { img: "huella.jpg", texto: "Terminal de huella: \"Fingerprint Scanner Mercato\", Ominae, CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Fingerprint_Scanner_Mercato.JPG" },
+  { img: "camara.jpg", texto: "Cámara domo: \"CCTV dome camera subway Rotterdam\", Sanderflight, CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:CCTV_dome_camera_subway_Rotterdam.jpg" },
 ];
 
 export type Riesgo = {
@@ -114,12 +128,12 @@ export const cuentas: Cuenta[] = [
   { usuario: "auditor_fuerte", clave: "13 caracteres aleatorios", fase: null, robustez: "Aceptable" },
 ];
 
-export type Tecnologia = { id: string; nombre: string; como: string; ventajas: string[]; limites: string[]; costo: 1 | 2 | 3; propuesta?: string };
+export type Tecnologia = { id: string; nombre: string; como: string; ventajas: string[]; limites: string[]; costo: 1 | 2 | 3; propuesta?: string; foto?: string };
 export const tecnologias: Tecnologia[] = [
   { id: "manual", nombre: "Registro manual", como: "Un monitor revisa el carné y anota el ingreso.", ventajas: ["Ya existe", "No cuesta nada adicional"], limites: ["Depende de la persona", "Fuera de horario no queda registro"], costo: 1 },
-  { id: "qr", nombre: "Carné con QR", como: "Un lector en la puerta lee el código del carné institucional.", ventajas: ["Usa una credencial que todos tienen", "Bajo costo"], limites: ["El código se puede fotografiar o copiar"], costo: 1, propuesta: "Fase 1" },
-  { id: "nfc", nombre: "Tarjeta RFID o NFC", como: "El lector detecta la tarjeta por proximidad y guarda fecha y hora.", ventajas: ["Rápido", "Registro automático de cada ingreso"], limites: ["Hay que emitir tarjetas compatibles", "Una tarjeta prestada da acceso a otra persona"], costo: 2, propuesta: "Fase 1" },
-  { id: "huella", nombre: "Huella dactilar", como: "Un lector biométrico compara la huella con la registrada.", ventajas: ["Liga el ingreso a la persona", "Evita prestar credenciales"], limites: ["Dato sensible (Ley 1581 de 2012): requiere autorización expresa", "Mayor costo"], costo: 3, propuesta: "Fase 2" },
+  { id: "qr", nombre: "Carné con QR", como: "Un lector en la puerta lee el código del carné institucional.", ventajas: ["Usa una credencial que todos tienen", "Bajo costo"], limites: ["El código se puede fotografiar o copiar"], costo: 1, propuesta: "Fase 1", foto: "lector.jpg" },
+  { id: "nfc", nombre: "Tarjeta RFID o NFC", como: "El lector detecta la tarjeta por proximidad y guarda fecha y hora.", ventajas: ["Rápido", "Registro automático de cada ingreso"], limites: ["Hay que emitir tarjetas compatibles", "Una tarjeta prestada da acceso a otra persona"], costo: 2, propuesta: "Fase 1", foto: "lector.jpg" },
+  { id: "huella", nombre: "Huella dactilar", como: "Un lector biométrico compara la huella con la registrada.", ventajas: ["Liga el ingreso a la persona", "Evita prestar credenciales"], limites: ["Dato sensible (Ley 1581 de 2012): requiere autorización expresa", "Mayor costo"], costo: 3, propuesta: "Fase 2", foto: "huella.jpg" },
   { id: "facial", nombre: "Reconocimiento facial", como: "Una cámara identifica el rostro de quien entra.", ventajas: ["No requiere contacto"], limites: ["Dato sensible", "Falla con mala luz o ángulos", "Manejo de imágenes"], costo: 3 },
 ];
 
@@ -136,6 +150,7 @@ export const plan: Accion[] = [
 ];
 
 export const referencias = [
+  { cita: "Minota Hurtado, J. A. (2026, 6 de noviembre). Luz verde a $40.000 millones para que la Universidad del Valle pueda reconstruir sus áreas afectadas por el terremoto en Cali. El Tiempo.", url: "https://www.eltiempo.com/colombia/cali/luz-verde-a-40-000-millones-para-que-la-universidad-del-valle-pueda-reconstruir-sus-areas-afectadas-por-el-terremoto-en-cali-3599192" },
   { cita: "Becerra, A. (2026, 4 de mayo). Reportan desaparición de computadores en la Universidad del Valle. El País.", url: "https://www.elpais.com.co/cali/reportan-desaparicion-de-computadores-en-la-universidad-del-valle-esto-fue-lo-que-ocurrio-0450.html" },
   { cita: "ISO. (2022). ISO/IEC 27001:2022. Sistemas de gestión de la seguridad de la información. Requisitos.", url: "https://www.iso.org/standard/27001" },
   { cita: "MinTIC. (2017). Instructivo de la herramienta de diagnóstico de seguridad y privacidad de la información (MSPI).", url: "https://gobiernodigital.mintic.gov.co/692/articles-5482_Instructivo_instrumento_Evaluacion_MSPI.pdf" },

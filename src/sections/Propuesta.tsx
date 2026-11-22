@@ -82,6 +82,12 @@ export default function Propuesta() {
           <button onClick={() => setRun((r) => r + 1)} className="mt-3 text-xs text-accent hover:underline">
             Ver de nuevo desde el paso 1
           </button>
+          {esc === "noche" && (
+            <figure className="mt-4 flex items-center gap-3 rounded-xl border border-line bg-surface p-3">
+              <img src="./img/camara.jpg" alt="Cámara domo instalada en el techo" className="h-20 w-20 shrink-0 rounded-lg object-cover" loading="lazy" />
+              <figcaption className="text-xs text-muted">Cámara domo como la que proponemos en cada acceso. Imagen de referencia de Wikimedia Commons.</figcaption>
+            </figure>
+          )}
         </div>
 
         <Card className="lg:col-span-2">
@@ -104,6 +110,12 @@ export default function Propuesta() {
                 {t.propuesta ? <Badge tone="accent">Propuesta · {t.propuesta}</Badge> : <Badge tone="muted">No priorizada</Badge>}
               </div>
               <p className="mt-2 text-sm text-muted">{t.como}</p>
+              {t.foto && (
+                <figure className="mt-3">
+                  <img src={`./img/${t.foto}`} alt={`Ejemplo de ${t.nombre.toLowerCase()}`} className="h-40 w-full rounded-xl bg-white object-contain" loading="lazy" />
+                  <figcaption className="mt-1 text-[11px] text-muted">Dispositivo de referencia (Wikimedia Commons). Ver créditos al final.</figcaption>
+                </figure>
+              )}
               <p className="mt-4 text-sm font-semibold text-low">Ventajas</p>
               <ul className="mt-1 list-disc space-y-0.5 pl-5 text-sm">{t.ventajas.map((v) => <li key={v}>{v}</li>)}</ul>
               <p className="mt-3 text-sm font-semibold text-high">Limitaciones</p>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Badge, Card, Section, nivelColor } from "../components/ui";
-import { controles, escala } from "../data";
+import { controles, escala, fuentes } from "../data";
 
 const filtros = ["Todos", "Lógico", "Físico"] as const;
 const barra = { high: "bg-high", mid: "bg-mid", low: "bg-low" } as const;
@@ -78,10 +78,15 @@ export default function Controles() {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <p className="mx-2 mb-3 rounded-xl border-l-4 border-accent bg-accent/5 px-4 py-3 text-sm leading-relaxed">
-                        <span className="mr-2"><Badge tone="muted">{c.tipo}</Badge></span>
-                        {c.observacion}
-                      </p>
+                      <div className="mx-2 mb-3 rounded-xl border-l-4 border-accent bg-accent/5 px-4 py-3 text-sm leading-relaxed">
+                        <p>
+                          <span className="mr-2"><Badge tone="muted">{c.tipo}</Badge></span>
+                          {c.observacion}
+                        </p>
+                        <p className="mt-2 text-xs text-muted">
+                          Evidencia: {c.evidencia.map((e) => fuentes[e]).join(" · ")}
+                        </p>
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -90,8 +95,8 @@ export default function Controles() {
           })}
         </ul>
         <p className="mt-4 text-xs text-muted">
-          La línea punteada marca la meta (Definido, 60). Es una valoración preliminar que el grupo confirma con la visita a
-          las salas y las entrevistas.
+          La línea punteada marca la meta (Definido, 60). Es una valoración preliminar: el grupo la confirmará con la visita
+          a las salas cuando reabran tras el sismo.
         </p>
       </Card>
 

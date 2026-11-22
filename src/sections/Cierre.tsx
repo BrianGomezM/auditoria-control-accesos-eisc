@@ -1,5 +1,5 @@
 import { Card } from "../components/ui";
-import { equipo, referencias, titulo } from "../data";
+import { creditos, equipo, referencias, titulo } from "../data";
 
 export default function Cierre() {
   return (
@@ -30,8 +30,19 @@ export default function Cierre() {
           </ul>
         </Card>
       </div>
+      <div className="mx-auto max-w-6xl px-4 pb-6 sm:px-6">
+        <p className="text-xs font-semibold text-muted">Créditos de las imágenes (ilustrativas, no corresponden a la EISC)</p>
+        <ul className="mt-1 space-y-0.5 text-xs text-muted">
+          {creditos.map((c) => (
+            <li key={c.img}>
+              <a href={c.url} target="_blank" rel="noreferrer" className="hover:text-accent">{c.texto}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
       <p className="pb-8 text-center text-xs text-muted">
         Página estática con fines académicos. No contiene datos reales de usuarios ni credenciales de la Universidad.
+        Versión del 21 de noviembre de 2026.
       </p>
     </footer>
   );

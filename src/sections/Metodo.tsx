@@ -25,6 +25,26 @@ export default function Metodo() {
         ))}
       </ol>
 
+      <Card className="mt-6 border-mid/40">
+        <div className="grid gap-5 md:grid-cols-5 md:items-center">
+          <div className="md:col-span-3">
+            <Badge tone="mid">Limitación</Badge>
+            <h3 className="mt-3 text-lg font-bold">La visita a las salas quedó aplazada por el sismo</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted">
+              El terremoto del 10 de agosto de 2026 afectó varias áreas de la Universidad del Valle, que pasó a clases
+              mixtas mientras reconstruye su infraestructura (El Tiempo, 6 de noviembre de 2026). No pudimos entrar a las
+              salas, así que esta versión se apoya en la experiencia de los integrantes como usuarios, la información
+              pública, la prensa y la prueba técnica. El informe trae una lista de verificación para la visita y un
+              cuestionario en línea para los monitores.
+            </p>
+          </div>
+          <figure className="md:col-span-2">
+            <img src="./img/sala.jpg" alt="Sala de cómputo universitaria con filas de computadores (imagen de referencia)" className="aspect-video w-full rounded-xl object-cover" loading="lazy" />
+            <figcaption className="mt-1.5 text-xs text-muted">Imagen ilustrativa de una sala de uso compartido. No corresponde a la EISC.</figcaption>
+          </figure>
+        </div>
+      </Card>
+
       <div className="mt-10 grid gap-4 lg:grid-cols-5">
         <Card className="lg:col-span-2">
           <h3 className="text-lg font-bold">Qué entra y qué no</h3>
